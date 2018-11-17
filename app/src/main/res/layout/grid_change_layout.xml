@@ -9,7 +9,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="33dp"
+        android:paddingBottom="0dp"
         android:id="@+id/tester"
         android:onClick="what"
         android:focusable="false"
@@ -48,12 +48,6 @@
 
     </RelativeLayout>
 
-    <Button
-        android:id="@+id/upload"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:text="Submit" />
 
 
 

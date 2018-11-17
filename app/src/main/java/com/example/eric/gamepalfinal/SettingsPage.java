@@ -317,6 +317,9 @@ public class SettingsPage extends Fragment {
         final Map usrInfo = new HashMap();
         usrInfo.put("Name", nameChanged);
 
+        bio = bioInput.getText().toString();
+        usrInfo.put("Bio", bio);
+
         databaseReference.updateChildren(usrInfo);
 
 
@@ -333,6 +336,11 @@ public class SettingsPage extends Fragment {
                     nameInput.setText(nameChanged);
 
                 }
+                    if (map.get("Bio")!=null){
+                        bio = map.get("Bio").toString();
+                        bioInput.setText(bio);
+
+                    }
                     if (map.get("ProfileImage1")!=null){
                         picChanged = map.get("ProfileImage1").toString();
                         Glide.with(appState).load(picChanged).into(gamePic1);

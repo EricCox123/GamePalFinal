@@ -199,7 +199,7 @@ public class HomePage extends Fragment{
            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 if(dataSnapshot.exists() && !dataSnapshot.getKey().equals(user.getUid())){
 
-                    String img1, img2, img3, img4;
+                    String img1, img2, img3, img4, bio;
                     if (dataSnapshot.child("ProfileImage1").getValue()==null) {
                         img1 = "android.resource://com.example.eric.gamepalfinal/mipmap/blank";
                     }
@@ -224,7 +224,13 @@ public class HomePage extends Fragment{
                     else{
                         img4 = dataSnapshot.child("ProfileImage4").getValue().toString();
                     }
-                    cards item = new cards(dataSnapshot.getKey(), dataSnapshot.child("Name").getValue().toString(),
+                    if (dataSnapshot.child("Bio").getValue()==null) {
+                        bio = "Empty";
+                    }
+                    else{
+                        bio = dataSnapshot.child("Bio").getValue().toString();
+                    }
+                    cards item = new cards(dataSnapshot.getKey(), dataSnapshot.child("Name").getValue().toString(), bio,
                             img1,img2,img3,img4);
 
                     rowItems.add(item);
@@ -256,6 +262,12 @@ public class HomePage extends Fragment{
             mAuth.signOut();
             currentUid = null;
             mAuth = null;
+            userDB = null;
+            for (Fragment fragment:getFragmentManager().getFragments()) {
+               if (fragment!=null) {
+                    getFragmentManager().beginTransaction().remove(fragment).commit();
+                }
+            }
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 

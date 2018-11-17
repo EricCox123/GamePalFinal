@@ -26,21 +26,62 @@
             android:layout_width="266dp"
             android:layout_height="440dp"
             android:layout_gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="33dp"
+                android:textColor="@android:color/black"
+                android:text="Games Played:"/>
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_marginTop="33dp"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
             android:id="@+id/bgImage"
             android:scaleType="centerCrop"/>
+            <ImageView
+                android:layout_marginTop="33dp"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:id="@+id/bgImage2"
+                android:scaleType="centerCrop"
+                android:layout_gravity="right"/>
+            <ImageView
+                android:layout_marginTop="170dp"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:id="@+id/bgImage3"
+                android:scaleType="centerCrop"/>
+            <ImageView
+                android:layout_marginTop="170dp"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:id="@+id/bgImage4"
+                android:scaleType="centerCrop"
+                android:layout_gravity="right"/>
 
         <TextView
             android:id="@+id/name"
-            android:textSize="40sp"
+            android:textSize="30sp"
             android:layout_marginTop="333dp"
             android:textColor="@android:color/black"
             android:gravity="left"
+            android:paddingLeft="4dp"
+
             android:text="okay"
-            android:layout_width="match_parent"
+            android:outlineProvider="paddedBounds"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent" />
+            <TextView
+                android:id="@+id/bio"
+                android:textSize="20sp"
+                android:layout_marginTop="333dp"
+                android:textColor="@android:color/black"
+                android:gravity="right"
+                android:paddingRight="7dp"
+                android:paddingBottom="4dp"
+                android:text="bio"
+                android:layout_marginLeft="115dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
 
 
         </FrameLayout>

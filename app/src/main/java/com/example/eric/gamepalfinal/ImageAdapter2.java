@@ -71,6 +71,7 @@ public class ImageAdapter2 extends BaseAdapter {
                 test.putString("region", region2);
                 test.putString("genre", genre2);
 
+
                 FragmentManager fragmentManager = ((AppCompatActivity)mContext).getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 SettingsPage settingsPage = new SettingsPage();

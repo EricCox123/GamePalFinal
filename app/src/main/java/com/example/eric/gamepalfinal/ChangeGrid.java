@@ -53,10 +53,6 @@ public class ChangeGrid extends Fragment {
             }
         });
 
-
-        Button home = (Button) v.findViewById(R.id.upload);
-        home.setOnClickListener(mUploadListener);
-
         return v;
     }
 
@@ -64,22 +60,5 @@ public class ChangeGrid extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
     }
-    private View.OnClickListener mUploadListener = new View.OnClickListener() {
-        public void onClick(View v) {
-            FragmentManager fragmentManager = getFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-
-            SettingsPage settingsPage = new SettingsPage();
-
-            fragmentTransaction.replace(R.id.content_frame, settingsPage);
-
-           // Bundle bundle2 = getArguments();
-            settingsPage.setArguments(bundle);
-
-            fragmentTransaction.addToBackStack(null);
-
-            fragmentTransaction.commit();
-        }
-    };
 }

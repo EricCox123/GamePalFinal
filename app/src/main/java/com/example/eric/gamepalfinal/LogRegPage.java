@@ -56,15 +56,11 @@ public class LogRegPage extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         v = inflater.inflate(R.layout.logregpage, container, false);
         appState = v.getContext();
 
         Button b = (Button) v.findViewById(R.id.btnLogin);
         b.setOnClickListener(mLoginListener);
-
-        Button g = (Button) v.findViewById(R.id.btnPickGames);
-        g.setOnClickListener(mGameListener);
 
         TextView t = (TextView) v.findViewById(R.id.lnkRegister);
         t.setOnClickListener(mTVListener);
@@ -81,7 +77,6 @@ public class LogRegPage extends Fragment {
         ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, region2);
         adapter2.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         spinnerRegion.setAdapter(adapter2);
-        //firebaseAuth = FirebaseAuth.getInstance();
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
         {
@@ -159,14 +154,9 @@ public class LogRegPage extends Fragment {
             }
             firebaseAuth = FirebaseAuth.getInstance();
             //create user may not work yet.
-            firebaseAuth.signInWithEmailAndPassword(logEmail, logPassword)
-                    .addOnCompleteListener((Activity) appState, new OnCompleteListener<AuthResult>() {
+            firebaseAuth.signInWithEmailAndPassword(logEmail, logPassword).addOnCompleteListener((Activity) appState, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                            /*
-                            Toast.makeText(appState, "createUserWithEmail:onComplete:" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
-                            put in Welcome + name to be displayed on the main page when logged in.
-                            */
                             if (!task.isSuccessful()) {
                                 Toast.makeText(appState, "Login Failed" + task.getException(),
                                         Toast.LENGTH_SHORT).show();
@@ -198,57 +188,6 @@ public class LogRegPage extends Fragment {
                         }
                     });
         }};
-/*
-    private String getRegion() {
-
-        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        String east = "East";
-        String west = "West";
-        String mid = "Mid";
-        String sa = "SAmerica";
-        String fps = "FPS";
-        String mmo = "MMO";
-        String rpg = "RPG";
-        String other = "Other";
-        String reg,gen;
-        int checker = 0;
-        for (checker =0  ; checker <= 8 ;checker++){
-            if(checker==1){
-                reg = east;
-                gen = fps;
-            }
-            if(checker==2){
-                reg = east;
-                gen = mmo;
-            }
-            if(checker==3){
-                reg = east;
-                gen =
-            }
-            if(checker==4){
-                reg = sa;
-            }
-        }
-            DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users").child(reg).child(gen);
-
-
-        }
-        //DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users");
-        region = user.getUid();
-        return region;
-
-    }
-    */
-    private String getGenre() {
-
-        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users");
-        genre = ref.getKey();
-        return genre;
-
-    }
-
-
 
     private View.OnClickListener mTVListener = new View.OnClickListener() {
             public void onClick(View v) {
@@ -263,21 +202,7 @@ public class LogRegPage extends Fragment {
                 fragmentTransaction.commit();
             }
         };
-    private View.OnClickListener mGameListener = new View.OnClickListener() {
-        public void onClick(View v) {
-            FragmentManager fragmentManager = getFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-            Toast.makeText(appState, "Clicked",
-                    Toast.LENGTH_SHORT).show();
-            GridActivity gridActivity = new GridActivity();
-
-            fragmentTransaction.replace(R.id.content_frame, gridActivity);
-            fragmentTransaction.addToBackStack(null);
-
-            fragmentTransaction.commit();
-        }
-    };
     };
 
 

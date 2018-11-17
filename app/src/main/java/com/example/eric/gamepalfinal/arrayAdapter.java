@@ -27,11 +27,19 @@ public class arrayAdapter extends ArrayAdapter<cards> {
             //here
         }
         TextView name = (TextView) convertView.findViewById(R.id.name);
+        TextView bio = (TextView) convertView.findViewById(R.id.bio);
         ImageView pic = (ImageView) convertView.findViewById(R.id.bgImage);
+        ImageView pic2 = (ImageView) convertView.findViewById(R.id.bgImage2);
+        ImageView pic3= (ImageView) convertView.findViewById(R.id.bgImage3);
+        ImageView pic4 = (ImageView) convertView.findViewById(R.id.bgImage4);
 
         name.setText(card.getName());
-        //pic.setImageResource(R.mipmap.fortnite); //user first image
+        bio.setText(card.getBio());
+
         Glide.with(getContext()).load(card.getImageUrl1()).into(pic);
+        Glide.with(getContext()).load(card.getImageUrl2()).into(pic2);
+        Glide.with(getContext()).load(card.getImageUrl3()).into(pic3);
+        Glide.with(getContext()).load(card.getImageUrl4()).into(pic4);
 
         return convertView;
 

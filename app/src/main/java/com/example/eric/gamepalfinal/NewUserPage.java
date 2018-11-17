@@ -129,6 +129,7 @@ public class NewUserPage extends Fragment{
 
             DatabaseReference curUsrDB = FirebaseDatabase.getInstance().getReference().child("Users").child(userRegion).child(gameGenre).child(usrAuth).child("Name");
             curUsrDB.setValue(usrName);
+
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
