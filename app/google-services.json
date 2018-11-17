@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "384318270107",
+    "firebase_url": "https://gamepal-97906.firebaseio.com",
+    "project_id": "gamepal-97906",
+    "storage_bucket": "gamepal-97906.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:384318270107:android:11e8dffcb04f2aa9",
+        "android_client_info": {
+          "package_name": "com.example.eric.gamepalfinal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "384318270107-ihbj5lmhs6d78opk5m81tv4ee7nsfah1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.eric.gamepalfinal",
+            "certificate_hash": "e09a8e258379e72278897cb79020dbab949ed723"
+          }
+        },
+        {
+          "client_id": "384318270107-g21kjvnnja166t00v4hle3hrbolaokp2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYPpzDbMwbC8e6SKaGr6wB3q6OXuWvI9c"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "384318270107-g21kjvnnja166t00v4hle3hrbolaokp2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

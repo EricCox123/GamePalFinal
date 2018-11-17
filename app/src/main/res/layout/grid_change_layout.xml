@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:focusable="false"
+    android:focusableInTouchMode="false"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="33dp"
+        android:id="@+id/tester"
+        android:onClick="what"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+
+        android:paddingTop="0dp">
+        <TextView
+            android:id="@+id/tv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="3dp"
+            android:text="Select 1 Game:"
+            android:textColor="#000"
+            android:textSize="18dp"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            />
+
+        <GridView
+            android:id="@+id/gridview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentTop="true"
+            android:gravity="center"
+            android:horizontalSpacing="0dp"
+            android:numColumns="3"
+            android:paddingTop="50dp"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="0dp"
+            android:visibility="visible" />
+
+
+
+
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/upload"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:text="Submit" />
+
+
+
+</FrameLayout>

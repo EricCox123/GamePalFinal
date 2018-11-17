@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">GamePal</string>
+
+
+    <string name="home">Home</string>
+    <string name="decks">Decks</string>
+    <string name="help">Help</string>
+
+
+    <string-array name="Menu">
+        <item>Menu</item>
+        <item>Home</item>
+        <item>Decks</item>
+        <item>Help</item>
+    </string-array>
+
+</resources>

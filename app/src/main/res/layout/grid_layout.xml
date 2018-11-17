@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<RelativeLayout
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="33dp"
+
+    android:paddingTop="0dp">
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:paddingLeft="3dp"
+        android:text="Please select any games you frequently play:
+Or type in your favourite game in the search bar."
+        android:textColor="#000"
+        android:textSize="18dp"
+    />
+
+    <EditText
+        android:id="@+id/plain_text_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="40dp"
+        android:hint="Game Title:"
+        android:layout_marginRight="130dp"
+        android:inputType="text"
+        android:enabled="true"/>
+
+    <Button
+        android:layout_width="90dp"
+        android:layout_height="40dp"
+
+        android:layout_alignTop="@+id/plain_text_input"
+        android:layout_alignEnd="@+id/plain_text_input"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="-92dp"
+        android:text="Search" />
+
+
+
+    <GridView
+        android:id="@+id/gridview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentTop="true"
+        android:gravity="center"
+        android:horizontalSpacing="0dp"
+        android:numColumns="3"
+        android:paddingTop="80dp"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="0dp"
+        android:visibility="visible" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="bottom">
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Submit"
+            android:id="@+id/goHome"/>
+
+    </RelativeLayout>
+
+</FrameLayout>

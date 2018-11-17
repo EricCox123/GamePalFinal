@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+
+        <TextView
+            android:id="@+id/loginscrn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="122dp"
+            android:layout_marginLeft="122dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="124dp"
+            android:layout_marginTop="12dp"
+            android:text="Settings"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+        <EditText
+        android:id="@+id/nameChange"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/loginscrn"
+        android:layout_alignParentStart="true"
+        android:hint="Name"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="255dp"
+        android:gravity="center"/>
+
+        <EditText
+            android:id="@+id/bio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/loginscrn"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="161dp"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="-2dp"
+            android:layout_marginRight="100dp"
+            android:gravity="center"
+            android:hint="Bio" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Please select 4 games you play!"
+            android:textSize="24dp"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="92dp"/>
+
+        <ImageView
+            android:id="@+id/game1"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="left"
+            android:layout_marginStart="-100dp"
+            android:layout_marginTop="133dp"
+            android:layout_toEndOf="@+id/game3"
+            android:src="@mipmap/cod"/>
+
+        <ImageView
+            android:id="@+id/game2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="133dp"
+            android:layout_marginLeft="222dp"
+            android:src="@mipmap/cod"
+            />
+
+        <ImageView
+            android:id="@+id/game3"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="center"
+            android:layout_marginStart="48dp"
+            android:layout_marginBottom="204dp"
+            android:src="@mipmap/cod" />
+
+        <ImageView
+            android:id="@+id/game4"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+
+            android:layout_marginTop="265dp"
+
+            android:layout_toEndOf="@+id/loginscrn"
+            android:src="@mipmap/cod" />
+
+        <Button
+            android:id="@+id/appChanges"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="83dp"
+            android:gravity="center"
+            android:text="apply changes" />
+
+        <Button
+            android:id="@+id/returnButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/appChanges"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="-83dp"
+            android:text="Back" />
+
+
+    </RelativeLayout>
+    </FrameLayout>
