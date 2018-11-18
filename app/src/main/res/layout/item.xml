@@ -5,10 +5,7 @@
     android:layout_gravity="center"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:paddingLeft="30dp"
-    android:paddingRight="30dp"
-    android:paddingTop="20dp"
-    android:paddingBottom="20dp"
+    android:padding="2dp"
     android:outlineProvider="bounds"
     android:clipToPadding="false"
     >
@@ -18,54 +15,66 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         app:cardCornerRadius="22dp"
-        android:elevation="8dp"
+        android:elevation="0dp"
         android:id="@+id/cardv"
 
         >
         <FrameLayout
             android:layout_width="266dp"
             android:layout_height="440dp"
-            android:layout_gravity="center">
+            android:layout_gravity="left">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="33dp"
+                android:paddingLeft="12dp"
+                android:paddingTop="5dp"
+                android:textSize="18dp"
+                android:id="@+id/heading"
                 android:textColor="@android:color/black"
                 android:text="Games Played:"/>
         <ImageView
             android:layout_marginTop="33dp"
-            android:layout_width="130dp"
-            android:layout_height="130dp"
+            android:layout_width="145dp"
+            android:layout_height="145dp"
             android:id="@+id/bgImage"
             android:scaleType="centerCrop"/>
             <ImageView
                 android:layout_marginTop="33dp"
-                android:layout_width="130dp"
-                android:layout_height="130dp"
+                android:layout_width="145dp"
+                android:layout_height="145dp"
                 android:id="@+id/bgImage2"
                 android:scaleType="centerCrop"
                 android:layout_gravity="right"/>
             <ImageView
                 android:layout_marginTop="170dp"
-                android:layout_width="130dp"
-                android:layout_height="130dp"
+                android:layout_width="145dp"
+                android:layout_height="145dp"
                 android:id="@+id/bgImage3"
                 android:scaleType="centerCrop"/>
             <ImageView
                 android:layout_marginTop="170dp"
-                android:layout_width="130dp"
-                android:layout_height="130dp"
+                android:layout_width="145dp"
+                android:layout_height="145dp"
                 android:id="@+id/bgImage4"
                 android:scaleType="centerCrop"
                 android:layout_gravity="right"/>
 
+            <View android:id="@+id/separator"
+                android:background="#D6D6D6"
+                android:layout_width = "fill_parent"
+                android:layout_height="2dip"
+                android:layout_marginTop="320dp"
+                android:layout_centerVertical ="true"
+                android:layout_alignParentTop="true"/>
+
         <TextView
             android:id="@+id/name"
             android:textSize="30sp"
-            android:layout_marginTop="333dp"
+            android:layout_marginTop="323dp"
             android:textColor="@android:color/black"
             android:gravity="left"
-            android:paddingLeft="4dp"
-
+            android:paddingLeft="7dp"
+            android:paddingBottom="4dp"
             android:text="okay"
             android:outlineProvider="paddedBounds"
             android:layout_width="wrap_content"
@@ -74,13 +83,13 @@
                 android:id="@+id/bio"
                 android:textSize="20sp"
                 android:layout_marginTop="333dp"
-                android:textColor="@android:color/black"
-                android:gravity="right"
+                android:textColor="#2F2F2F"
                 android:paddingRight="7dp"
                 android:paddingBottom="4dp"
-                android:text="bio"
-                android:layout_marginLeft="115dp"
-                android:layout_width="wrap_content"
+                android:text="..."
+                android:gravity="left"
+                android:layout_marginLeft="100dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
 
