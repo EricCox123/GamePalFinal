@@ -49,7 +49,7 @@ public class HomePage extends Fragment{
     private int i;
     Context appState;
     private ArrayList<String> gamesLiked;
-    Button logout, settings;
+    Button logout, settings, matches;
     FirebaseAuth mAuth;
     String genre, region, currentUid;
 
@@ -86,6 +86,9 @@ public class HomePage extends Fragment{
 
         settings = (Button) v.findViewById(R.id.settings);
         settings.setOnClickListener(mSettingsListener);
+
+        matches = (Button) v.findViewById(R.id.matches);
+        matches.setOnClickListener(mMatchesListener);
 
         rowItems = new ArrayList<cards>();
 
@@ -293,6 +296,24 @@ public class HomePage extends Fragment{
             settingsPage.setArguments(bundle);
 
             fragmentTransaction.replace(R.id.content_frame, settingsPage);
+            fragmentTransaction.addToBackStack(null);
+
+            fragmentTransaction.commit();
+        }
+    };
+    private View.OnClickListener mMatchesListener = new View.OnClickListener() {
+        public void onClick(View v) {
+
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+            MatchesPage matchesPage = new MatchesPage();
+            Bundle bundle = new Bundle();
+            bundle.putString("region", region);
+            bundle.putString("genre", genre);
+            matchesPage.setArguments(bundle);
+
+            fragmentTransaction.replace(R.id.content_frame, matchesPage);
             fragmentTransaction.addToBackStack(null);
 
             fragmentTransaction.commit();

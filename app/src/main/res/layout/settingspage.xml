@@ -58,42 +58,38 @@
 
         <ImageView
             android:id="@+id/game1"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_gravity="left"
-            android:layout_marginStart="-100dp"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_marginLeft="15dp"
             android:layout_marginTop="133dp"
-            android:layout_toEndOf="@+id/game3"
             android:src="@mipmap/cod"/>
 
         <ImageView
             android:id="@+id/game2"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
             android:layout_marginTop="133dp"
-            android:layout_marginLeft="222dp"
+            android:layout_marginLeft="200dp"
+            android:layout_marginRight="15dp"
             android:src="@mipmap/cod"
             />
 
         <ImageView
             android:id="@+id/game3"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentBottom="true"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
             android:layout_gravity="center"
-            android:layout_marginStart="48dp"
-            android:layout_marginBottom="204dp"
+            android:layout_marginTop="310dp"
+            android:layout_marginLeft="15dp"
             android:src="@mipmap/cod" />
 
         <ImageView
             android:id="@+id/game4"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
 
-            android:layout_marginTop="265dp"
-
-            android:layout_toEndOf="@+id/loginscrn"
+            android:layout_marginTop="310dp"
+            android:layout_marginLeft="200dp"
             android:src="@mipmap/cod" />
 
         <Button
@@ -102,7 +98,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="83dp"
+            android:layout_marginBottom="53dp"
             android:gravity="center"
             android:text="apply changes" />
 
@@ -112,7 +108,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/appChanges"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="-83dp"
+            android:layout_marginTop="-53dp"
             android:text="Back" />
 
 
