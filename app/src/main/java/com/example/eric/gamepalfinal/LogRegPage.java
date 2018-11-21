@@ -167,7 +167,7 @@ public class LogRegPage extends Fragment {
 
                                 region = userRegion;
                                 genre = gameGenre;
-                                Toast.makeText(appState, usrID, Toast.LENGTH_LONG).show();
+                                //Toast.makeText(appState, usrID, Toast.LENGTH_LONG).show();
 
                                 bundle.putString("region", region);
                                 bundle.putString("genre", genre);

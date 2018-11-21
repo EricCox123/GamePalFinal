@@ -59,7 +59,7 @@ public class HomePage extends Fragment{
 
     ListView listView;
     List<cards> rowItems;
-    private DatabaseReference userDB;
+    private DatabaseReference userDB, chatDB;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -79,6 +79,7 @@ public class HomePage extends Fragment{
         appState = v.getContext();
         mAuth = FirebaseAuth.getInstance();
         userDB = FirebaseDatabase.getInstance().getReference().child("Users");
+        chatDB = FirebaseDatabase.getInstance().getReference();
         currentUid = mAuth.getCurrentUser().getUid();
         //final Context appState = this.getActivity();
         logout = (Button) v.findViewById(R.id.logout);
@@ -97,8 +98,8 @@ public class HomePage extends Fragment{
         if (bundle != null) {
             region = getArguments().getString("region");
             genre = getArguments().getString("genre");
-            Toast.makeText(appState, region,Toast.LENGTH_LONG).show();
-            Toast.makeText(appState, genre,Toast.LENGTH_LONG).show();
+            //Toast.makeText(appState, region,Toast.LENGTH_LONG).show();
+            // Toast.makeText(appState, genre,Toast.LENGTH_LONG).show();
 
             checkUsers(region, genre);
         }
@@ -168,15 +169,22 @@ public class HomePage extends Fragment{
 
 
 
-    private void isAMatch(String userID) {
+    private void isAMatch(final String userID) {
         DatabaseReference checkMatchDB = userDB.child(region).child(genre).child(currentUid).child("Yes").child(userID);
         checkMatchDB.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
                     Toast.makeText(appState, "NEW MATCH!",Toast.LENGTH_LONG).show();
-                    userDB.child(region).child(genre).child(dataSnapshot.getKey()).child("Matches").child(currentUid).setValue(true);
-                    userDB.child(region).child(genre).child(currentUid).child("Matches").child(dataSnapshot.getKey()).setValue(true);
+
+                    String key = FirebaseDatabase.getInstance().getReference().child("Chat").push().getKey();
+
+                    //userDB.child(region).child(genre).child(dataSnapshot.getKey()).child("Matches").child(currentUid).setValue(true);
+                    userDB.child(region).child(genre).child(dataSnapshot.getKey()).child("Matches").child(currentUid).child("ChatID").setValue(key);
+                    //userDB.child(region).child(genre).child(currentUid).child("Matches").child(dataSnapshot.getKey()).setValue(true);
+                    userDB.child(region).child(genre).child(currentUid).child("Matches").child(dataSnapshot.getKey()).child("ChatID").setValue(key);
+
+                    chatDB.child("Chat").setValue(key);
 
                 }
             }
@@ -310,6 +318,7 @@ public class HomePage extends Fragment{
             MatchesPage matchesPage = new MatchesPage();
             Bundle bundle = new Bundle();
             bundle.putString("region", region);
+            //bundle.putString("passChatID",);
             bundle.putString("genre", genre);
             matchesPage.setArguments(bundle);
 
