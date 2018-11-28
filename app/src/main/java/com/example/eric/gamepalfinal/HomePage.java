@@ -1,27 +1,20 @@
 package com.example.eric.gamepalfinal;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -37,7 +30,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,7 +46,6 @@ public class HomePage extends Fragment{
     String genre, region, currentUid;
 
     Toolbar homeToolbar;
-    Spinner homeSpinner;
     private DrawerLayout mDrawerLayout;
 
     ListView listView;
@@ -64,7 +55,7 @@ public class HomePage extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         View v = inflater.inflate(R.layout.activity_homepage, container, false);
 
         Toolbar homeToolbar = v.findViewById(R.id.homeToolbar);
@@ -74,14 +65,13 @@ public class HomePage extends Fragment{
         actionbar.setDisplayHomeAsUpEnabled(true);
         actionbar.setHomeAsUpIndicator(R.mipmap.ic_mymenu5);
 
-
-
         appState = v.getContext();
+
         mAuth = FirebaseAuth.getInstance();
         userDB = FirebaseDatabase.getInstance().getReference().child("Users");
         chatDB = FirebaseDatabase.getInstance().getReference();
+
         currentUid = mAuth.getCurrentUser().getUid();
-        //final Context appState = this.getActivity();
         logout = (Button) v.findViewById(R.id.logout);
         logout.setOnClickListener(mLogoutListener);
 
@@ -98,8 +88,6 @@ public class HomePage extends Fragment{
         if (bundle != null) {
             region = getArguments().getString("region");
             genre = getArguments().getString("genre");
-            //Toast.makeText(appState, region,Toast.LENGTH_LONG).show();
-            // Toast.makeText(appState, genre,Toast.LENGTH_LONG).show();
 
             checkUsers(region, genre);
         }
@@ -113,7 +101,6 @@ public class HomePage extends Fragment{
         flingContainer.setFlingListener(new SwipeFlingAdapterView.onFlingListener() {
             @Override
             public void removeFirstObjectInAdapter() {
-                // this is the simplest way to delete an object from the Adapter (/AdapterView)
                 Log.d("LIST", "removed object!");
                 rowItems.remove(0);
                 arrayAdapter.notifyDataSetChanged();
@@ -125,12 +112,12 @@ public class HomePage extends Fragment{
                 cards object = (cards) dataObject;
                 String userID = object.getUsrID();
                 userDB.child(region).child(genre).child(userID).child("No").child(currentUid).setValue(true);
-                Toast.makeText(appState, "Left!",Toast.LENGTH_LONG);
+                Toast.makeText(appState, "Dislike!",Toast.LENGTH_SHORT);
             }
 
             @Override
             public void onRightCardExit(Object dataObject) {
-                Toast.makeText(appState, "Right!",Toast.LENGTH_LONG);
+                Toast.makeText(appState, "Like!",Toast.LENGTH_SHORT);
                 cards object = (cards) dataObject;
                 String userID = object.getUsrID();
                 userDB.child(region).child(genre).child(userID).child("Yes").child(currentUid).setValue(true);
@@ -144,25 +131,16 @@ public class HomePage extends Fragment{
 
             @Override
             public void onScroll(float scrollProgressPercent) {
-                /*
-                View view = flingContainer.getSelectedView();
-                view.findViewById(R.id.item_swipe_right_indicator).setAlpha(scrollProgressPercent < 0 ? -scrollProgressPercent : 0);
-                view.findViewById(R.id.item_swipe_left_indicator).setAlpha(scrollProgressPercent > 0 ? scrollProgressPercent : 0);
-                */
+
             }
         });
 
-
-        // Optionally add an OnItemClickListener
         flingContainer.setOnItemClickListener(new SwipeFlingAdapterView.OnItemClickListener() {
             @Override
             public void onItemClicked(int itemPosition, Object dataObject) {
-                Toast.makeText(appState, "Clicked!",Toast.LENGTH_LONG);
+
             }
         });
-
-
-
 
         return v;
     }
@@ -175,16 +153,14 @@ public class HomePage extends Fragment{
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
-                    Toast.makeText(appState, "NEW MATCH!",Toast.LENGTH_LONG).show();
+                    Toast.makeText(appState, "New Match!",Toast.LENGTH_LONG).show();
 
                     String key = FirebaseDatabase.getInstance().getReference().child("Chat").push().getKey();
 
-                    //userDB.child(region).child(genre).child(dataSnapshot.getKey()).child("Matches").child(currentUid).setValue(true);
-                    userDB.child(region).child(genre).child(dataSnapshot.getKey()).child("Matches").child(currentUid).child("ChatID").setValue(key);
-                    //userDB.child(region).child(genre).child(currentUid).child("Matches").child(dataSnapshot.getKey()).setValue(true);
-                    userDB.child(region).child(genre).child(currentUid).child("Matches").child(dataSnapshot.getKey()).child("ChatID").setValue(key);
 
-                    chatDB.child("Chat").setValue(key);
+                    userDB.child(region).child(genre).child(dataSnapshot.getKey()).child("Matches").child(currentUid).child("ChatID").setValue(key);
+                    userDB.child(region).child(genre).child(currentUid).child("Matches").child(dataSnapshot.getKey()).child("ChatID").setValue(key);
+                    //chatDB.child("Chat").child("ChatID").setValue(key);
 
                 }
             }
@@ -195,8 +171,6 @@ public class HomePage extends Fragment{
             }
         });
     }
-
-
 
 
 
@@ -316,9 +290,9 @@ public class HomePage extends Fragment{
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
             MatchesPage matchesPage = new MatchesPage();
+
             Bundle bundle = new Bundle();
             bundle.putString("region", region);
-            //bundle.putString("passChatID",);
             bundle.putString("genre", genre);
             matchesPage.setArguments(bundle);
 

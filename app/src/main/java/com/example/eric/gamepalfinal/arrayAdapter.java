@@ -1,7 +1,6 @@
 package com.example.eric.gamepalfinal;
 
 import android.content.Context;
-import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,10 +28,6 @@ public class arrayAdapter extends ArrayAdapter<cards> {
         }
         TextView name = (TextView) convertView.findViewById(R.id.name);
 
-
-        //Typeface notComicSans = Typeface.createFromAsset(context.getAssets(), "fonts/OpenSans-Regular");
-
-
         TextView bio = (TextView) convertView.findViewById(R.id.bio);
         ImageView pic = (ImageView) convertView.findViewById(R.id.bgImage);
         ImageView pic2 = (ImageView) convertView.findViewById(R.id.bgImage2);
@@ -46,9 +41,6 @@ public class arrayAdapter extends ArrayAdapter<cards> {
         Glide.with(getContext()).load(card.getImageUrl2()).into(pic2);
         Glide.with(getContext()).load(card.getImageUrl3()).into(pic3);
         Glide.with(getContext()).load(card.getImageUrl4()).into(pic4);
-
-       // name.setTypeface(notComicSans);
-       // bio.setTypeface(notComicSans);
         return convertView;
 
     }

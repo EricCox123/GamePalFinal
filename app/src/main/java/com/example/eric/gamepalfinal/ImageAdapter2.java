@@ -44,11 +44,12 @@ public class ImageAdapter2 extends BaseAdapter {
     public View getView(final int position, final View convertView, ViewGroup parent) {
         final ImageView imageView;
         if (convertView == null) {
-            // if it's not recycled, initialize some attributes
+
             imageView = new ImageView(mContext);
             imageView.setLayoutParams(new GridView.LayoutParams(470, 500));
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
             imageView.setPadding(1, 0, 1, 0);
+
         } else {
             imageView = (ImageView) convertView;
         }
@@ -61,8 +62,6 @@ public class ImageAdapter2 extends BaseAdapter {
             @Override
             public void onClick(View arg0) {
 
-                //Toast.makeText(mContext, "" + mThumbIds[position],
-                      //  Toast.LENGTH_LONG).show();
                 imageView.setImageResource(R.mipmap.selected);
 
                 Bundle test = new Bundle();
@@ -78,10 +77,7 @@ public class ImageAdapter2 extends BaseAdapter {
                 settingsPage.setArguments(test);
                 fragmentTransaction.replace(R.id.content_frame, settingsPage);
                 fragmentTransaction.addToBackStack(null);
-
                 fragmentTransaction.commit();
-
-
 
             }
         });
@@ -89,7 +85,6 @@ public class ImageAdapter2 extends BaseAdapter {
         return imageView;
     }
 
-    // references to our images
     private Integer[] mThumbIds = {
 
             R.mipmap.fortnite,

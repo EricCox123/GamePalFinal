@@ -8,6 +8,7 @@
     android:theme="@style/ThemeOverlay.AppCompat.Light"
     android:orientation="horizontal"
     android:gravity="bottom"
+
     >
 
     <ImageView

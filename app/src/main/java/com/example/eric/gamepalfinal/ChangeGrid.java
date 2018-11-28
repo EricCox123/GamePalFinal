@@ -44,8 +44,6 @@ public class ChangeGrid extends Fragment {
         GridView gridview = (GridView) v.findViewById(R.id.gridview);
         gridview.setAdapter(new ImageAdapter2(context,imgNum,region,genre));
 
-
-
         gridview.setOnItemClickListener(new OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {

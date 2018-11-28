@@ -1,42 +1,29 @@
 package com.example.eric.gamepalfinal;
 
-        import android.app.Activity;
-        import android.content.Context;
-        import android.content.Intent;
-        import android.os.Bundle;
-        import android.support.annotation.NonNull;
-        import android.support.annotation.Nullable;
-        import android.support.v4.app.Fragment;
-        import android.support.v4.app.FragmentManager;
-        import android.support.v4.app.FragmentTransaction;
-        import android.text.TextUtils;
-        import android.util.Log;
-        import android.view.LayoutInflater;
-        import android.view.View;
-        import android.view.ViewGroup;
-        import android.widget.AdapterView;
-        import android.widget.ArrayAdapter;
-        import android.widget.Button;
-        import android.widget.EditText;
-        import android.widget.Spinner;
-        import android.widget.TextView;
-        import android.widget.Toast;
+import android.app.Activity;
+import android.content.Context;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.text.TextUtils;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
-        import com.google.android.gms.tasks.OnCompleteListener;
-        import com.google.android.gms.tasks.Task;
-        import com.google.firebase.FirebaseError;
-        import com.google.firebase.auth.AuthResult;
-        import com.google.firebase.auth.FirebaseAuth;
-        import com.google.firebase.auth.FirebaseUser;
-        import com.google.firebase.database.ChildEventListener;
-        import com.google.firebase.database.DataSnapshot;
-        import com.google.firebase.database.DatabaseError;
-        import com.google.firebase.database.DatabaseReference;
-        import com.google.firebase.database.FirebaseDatabase;
-        import com.google.firebase.database.Query;
-        import com.google.firebase.database.ValueEventListener;
-
-        import java.util.Map;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 
 public class LogRegPage extends Fragment {
 
@@ -98,7 +85,6 @@ public class LogRegPage extends Fragment {
                 if(gameType.equals("Other")){
                     gameGenre = "Other";
                 }
-
             }
 
             public void onNothingSelected(AdapterView<?> parent) {
@@ -125,7 +111,6 @@ public class LogRegPage extends Fragment {
                 if(regionType.equals("S.America")){
                     userRegion = "SAmerica";
                 }
-
             }
 
             public void onNothingSelected(AdapterView<?> parent) {
@@ -153,12 +138,12 @@ public class LogRegPage extends Fragment {
                 return;
             }
             firebaseAuth = FirebaseAuth.getInstance();
-            //create user may not work yet.
+
             firebaseAuth.signInWithEmailAndPassword(logEmail, logPassword).addOnCompleteListener((Activity) appState, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (!task.isSuccessful()) {
-                                Toast.makeText(appState, "Login Failed" + task.getException(),
+                                Toast.makeText(appState, "Invalid Username/Password" + task.getException(),
                                         Toast.LENGTH_SHORT).show();
                             } else {
 
@@ -167,7 +152,6 @@ public class LogRegPage extends Fragment {
 
                                 region = userRegion;
                                 genre = gameGenre;
-                                //Toast.makeText(appState, usrID, Toast.LENGTH_LONG).show();
 
                                 bundle.putString("region", region);
                                 bundle.putString("genre", genre);
@@ -182,8 +166,6 @@ public class LogRegPage extends Fragment {
 
                                 fragmentTransaction.commit();
 
-
-
                             }
                         }
                     });
@@ -194,15 +176,24 @@ public class LogRegPage extends Fragment {
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-                RegPage regPage = new RegPage();
+                Bundle bundle = new Bundle();
+                firebaseAuth = FirebaseAuth.getInstance();
+                String usrID = firebaseAuth.getUid();
 
+                region = userRegion;
+                genre = gameGenre;
+
+                bundle.putString("region", region);
+                bundle.putString("genre", genre);
+
+                RegPage regPage = new RegPage();
+                regPage.setArguments(bundle);
                 fragmentTransaction.replace(R.id.content_frame, regPage);
                 fragmentTransaction.addToBackStack(null);
 
                 fragmentTransaction.commit();
             }
         };
-
     };
 
 

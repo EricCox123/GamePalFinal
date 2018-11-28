@@ -1,11 +1,7 @@
 package com.example.eric.gamepalfinal;
 
-import android.app.Activity;
 import android.content.Context;
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -35,11 +31,10 @@ public class ImageAdapter extends BaseAdapter {
         return 0;
     }
 
-    // create a new ImageView for each item referenced by the Adapter
     public View getView(final int position, final View convertView, ViewGroup parent) {
         final ImageView imageView;
         if (convertView == null) {
-            // if it's not recycled, initialize some attributes
+
             imageView = new ImageView(mContext);
             imageView.setLayoutParams(new GridView.LayoutParams(470, 500));
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
@@ -70,16 +65,12 @@ public class ImageAdapter extends BaseAdapter {
                 fragmentTransaction.addToBackStack(null);
 
                 fragmentTransaction.commit();
-
-
-
             }
         });
 
         return imageView;
     }
 
-    // references to our images
     private Integer[] mThumbIds = {
 
             R.mipmap.fortnite,
@@ -104,6 +95,5 @@ public class ImageAdapter extends BaseAdapter {
             R.mipmap.ssbm,
             R.mipmap.nba,
             R.mipmap.forza4
-
     };
 }
