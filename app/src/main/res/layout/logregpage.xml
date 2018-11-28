@@ -11,7 +11,11 @@ android:orientation="vertical">
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#A1CCBC">
+        android:background="#88C7B1">
+        <ImageView
+            android:layout_width="77dp"
+            android:layout_height="77dp"
+            android:src="@mipmap/gplogohp"/>
         <TextView
             android:id="@+id/loginscrn"
             android:layout_width="wrap_content"

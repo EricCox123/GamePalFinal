@@ -57,8 +57,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="scalingPercent" value="169" />
-                                                <entry key="trimmed" value="true" />
+                                                <entry key="scalingPercent" value="99" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -94,8 +93,7 @@
                                       <entry key="backgroundColor" value="ffffff" />
                                       <entry key="backgroundImage" value="$PROJECT_DIR$/../../Images/minecraft.jpg" />
                                       <entry key="backgroundLayerName" value="ic_launcher_background" />
-                                      <entry key="foregroundAssetType" value="TEXT" />
-                                      <entry key="foregroundImage" value="$PROJECT_DIR$/../../Images/forza4.jpg" />
+                                      <entry key="foregroundImage" value="$PROJECT_DIR$/../../add.png" />
                                       <entry key="foregroundLayerName" value="ic_launcher_foreground" />
                                       <entry key="outputName" value="blank" />
                                       <entry key="showGrid" value="true" />

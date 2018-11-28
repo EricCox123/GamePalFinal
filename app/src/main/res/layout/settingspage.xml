@@ -83,7 +83,7 @@
             android:layout_height="160dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="150dp"
-            android:src="@mipmap/cod"/>
+            android:src="@mipmap/blank"/>
 
         <ImageView
             android:id="@+id/game2"
@@ -91,7 +91,7 @@
             android:layout_height="160dp"
             android:layout_marginTop="150dp"
             android:layout_marginLeft="195dp"
-            android:src="@mipmap/cod"
+            android:src="@mipmap/blank"
             />
 
         <ImageView
@@ -101,7 +101,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="320dp"
             android:layout_marginLeft="20dp"
-            android:src="@mipmap/cod" />
+            android:src="@mipmap/blank" />
 
         <ImageView
             android:id="@+id/game4"
