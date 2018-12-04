@@ -57,7 +57,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="scalingPercent" value="99" />
+                                                <entry key="scalingPercent" value="156" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -93,9 +93,9 @@
                                       <entry key="backgroundColor" value="ffffff" />
                                       <entry key="backgroundImage" value="$PROJECT_DIR$/../../Images/minecraft.jpg" />
                                       <entry key="backgroundLayerName" value="ic_launcher_background" />
-                                      <entry key="foregroundImage" value="$PROJECT_DIR$/../../add.png" />
+                                      <entry key="foregroundImage" value="$PROJECT_DIR$/../../trythis.png" />
                                       <entry key="foregroundLayerName" value="ic_launcher_foreground" />
-                                      <entry key="outputName" value="blank" />
+                                      <entry key="outputName" value="loglogo" />
                                       <entry key="showGrid" value="true" />
                                     </map>
                                   </option>

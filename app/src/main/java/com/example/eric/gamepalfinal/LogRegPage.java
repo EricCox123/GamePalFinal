@@ -30,7 +30,6 @@ public class LogRegPage extends Fragment {
     View v;
 
     private FirebaseAuth firebaseAuth;
-    private FirebaseAuth.AuthStateListener authStateListener;
     public EditText email, password;
     public String logEmail, logPassword;
     Context appState;
@@ -143,9 +142,10 @@ public class LogRegPage extends Fragment {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (!task.isSuccessful()) {
-                                Toast.makeText(appState, "Invalid Username/Password" + task.getException(),
+                                Toast.makeText(appState, "Invalid Username/Password",
                                         Toast.LENGTH_SHORT).show();
-                            } else {
+                                        password.setText(null);
+                            }else{
 
                                 Bundle bundle = new Bundle();
                                 String usrID = firebaseAuth.getUid();
@@ -178,7 +178,6 @@ public class LogRegPage extends Fragment {
 
                 Bundle bundle = new Bundle();
                 firebaseAuth = FirebaseAuth.getInstance();
-                String usrID = firebaseAuth.getUid();
 
                 region = userRegion;
                 genre = gameGenre;

@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     Context context;
     FirebaseAuth mAuth;
+    private FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,10 +69,46 @@ public class MainActivity extends AppCompatActivity {
 
                             if (menuItem.getTitle().equals("Home")) {
 
+                                Bundle bundle = new Bundle();
+                                //String usrID = firebaseAuth.getUid();
+
+                                String region = "East";
+                                String genre = "FPS";
+
+                                bundle.putString("region", region);
+                                bundle.putString("genre", genre);
+
+                                FragmentManager fragmentManager2 = getSupportFragmentManager();
+                                FragmentTransaction fragmentTransaction2 = fragmentManager2.beginTransaction();
+
+                                HomePage homePage = new HomePage();
+                                homePage.setArguments(bundle);
+                                fragmentTransaction2.replace(R.id.content_frame, homePage);
+                                fragmentTransaction2.addToBackStack(null);
+
+                                fragmentTransaction2.commit();
                             }
 
                             if (menuItem.getTitle().equals("Matches")) {
 
+                                Bundle bundle = new Bundle();
+
+
+                                String region = "East";
+                                String genre = "FPS";
+
+                                bundle.putString("region", region);
+                                bundle.putString("genre", genre);
+
+                                FragmentManager fragmentManager2 = getSupportFragmentManager();
+                                FragmentTransaction fragmentTransaction2 = fragmentManager2.beginTransaction();
+
+                                MatchesPage matchesPage = new MatchesPage();
+                                matchesPage.setArguments(bundle);
+                                fragmentTransaction2.replace(R.id.content_frame, matchesPage);
+                                fragmentTransaction2.addToBackStack(null);
+
+                                fragmentTransaction2.commit();
                             }
 
                             if (menuItem.getTitle().equals("Chat")) {

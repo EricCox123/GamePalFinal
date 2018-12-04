@@ -47,7 +47,6 @@ public class ChangeGrid extends Fragment {
         gridview.setOnItemClickListener(new OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
-
             }
         });
 
@@ -58,5 +57,4 @@ public class ChangeGrid extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
     }
-
 }

@@ -13,13 +13,20 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -53,7 +60,7 @@ public class SettingsPage extends Fragment {
     View v;
 
     private EditText nameInput, bioInput;
-    private String nameChanged, bio, usrID, imageurl1, imageurl2, imageurl3, imageurl4;
+    private String nameChanged, bio, usrID, gameGenre, userRegion;
     private Button submit, returnButton;
     Context appState;
     private ImageView gamePic1, gamePic2,gamePic3,gamePic4;
@@ -62,6 +69,9 @@ public class SettingsPage extends Fragment {
     private Uri uri;
     private int changedImageID, imageNum;
     private String picChanged, region, genre;
+    private DrawerLayout mDrawerLayout;
+    private static final String[] paths = {"FPS", "MMO", "RPG", "Other"};
+    private static final String[] region2 = {"NA-East", "NA-West", "NA-Mid", "S.America"};
 
 
 
@@ -71,6 +81,15 @@ public class SettingsPage extends Fragment {
         // Inflate the layout for this fragment
         v = inflater.inflate(R.layout.settingspage, container, false);
         appState = v.getContext();
+
+
+        Toolbar settingsToolbar = v.findViewById(R.id.settingsToolbar);
+        ((AppCompatActivity)getActivity()).setSupportActionBar(settingsToolbar);
+        mDrawerLayout = v.findViewById(R.id.settings_drawer_layout);
+        ActionBar actionbar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+        actionbar.setDisplayHomeAsUpEnabled(true);
+        actionbar.setHomeAsUpIndicator(R.mipmap.ic_mymenu5);
+
         nameInput = (EditText) v.findViewById(R.id.nameChange);
         bioInput   = (EditText) v.findViewById(R.id.bio);
         submit = (Button) v.findViewById(R.id.appChanges);
@@ -90,9 +109,71 @@ public class SettingsPage extends Fragment {
         if (bundle!=null) {
             region = bundle.getString("region");
             genre = bundle.getString("genre");
-
-             Toast.makeText(appState, genre +" " + region, Toast.LENGTH_LONG).show();
         }
+
+        final Spinner spinner = (Spinner) v.findViewById(R.id.gameGenre);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(appState, android.R.layout.simple_spinner_item, paths);
+        adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        spinner.setAdapter(adapter);
+
+        final Spinner spinnerRegion = (Spinner) v.findViewById(R.id.spinnerRegion);
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(appState, android.R.layout.simple_spinner_item, region2);
+        adapter2.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        spinnerRegion.setAdapter(adapter2);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
+            public void onItemSelected(AdapterView<?> parent, View view,
+                                       int pos, long id) {
+
+                // gameGenre = spinner.getSelectedItem().toString();
+                String gameType = spinner.getSelectedItem().toString();
+                //Should change data base to avoid all these if statements.
+                if(gameType.equals("FPS")){
+                    gameGenre = "FPS";
+                }
+                if(gameType.equals("MMO")){
+                    gameGenre = "MMO";
+                }
+                if(gameType.equals("RPG")){
+                    gameGenre = "RPG";
+                }
+                if(gameType.equals("Other")){
+                    gameGenre = "Other";
+                }
+            }
+
+            public void onNothingSelected(AdapterView<?> parent) {
+                spinner.setSelection(1);
+            }
+
+        });
+        spinnerRegion.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
+            public void onItemSelected(AdapterView<?> parent, View view,
+                                       int pos, long id) {
+
+                String regionType = spinnerRegion.getSelectedItem().toString();
+                //Should change data base to avoid all these if statements.
+                if(regionType.equals("NA-East")){
+                    userRegion = "East";
+                }
+                if(regionType.equals("NA-West")){
+                    userRegion = "West";
+                }
+                if(regionType.equals("NA-Mid")){
+                    userRegion = "Mid";
+                }
+                if(regionType.equals("S.America")){
+                    userRegion = "SAmerica";
+                }
+            }
+
+            public void onNothingSelected(AdapterView<?> parent) {
+                spinnerRegion.setSelection(1);
+            }
+
+        });
 
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(region).child(genre).child(usrID);
 
@@ -106,11 +187,9 @@ public class SettingsPage extends Fragment {
             if (imageNumb == 1) {
                 gamePic1.setImageResource(changedImageID);
 
-                //Toast.makeText(appState, "first image yo", Toast.LENGTH_LONG).show();
                 Uri uri = Uri.parse("android.resource://com.example.eric.gamepalfinal/mipmap/" + changedImageID);
                 try {
                     InputStream stream = appState.getContentResolver().openInputStream(uri);
-                    //Toast.makeText(appState, "uri?" + uri.toString(), Toast.LENGTH_LONG).show();
                     Map usrInfo1 = new HashMap();
                     usrInfo1.put("ProfileImage1", uri.toString());
                     databaseReference.updateChildren(usrInfo1);
@@ -118,7 +197,7 @@ public class SettingsPage extends Fragment {
                     e.printStackTrace();
                 }
             } else {
-                int imageId = getResources().getIdentifier("battlefield", "mipmap", appState.getPackageName()); //this will eventually read db pic
+                int imageId = getResources().getIdentifier("blank", "mipmap", appState.getPackageName()); //this will eventually read db pic
                 gamePic1.setImageResource(imageId);  //have to save the image. worked with image  id instead of mipmap location
             }
 
@@ -138,7 +217,7 @@ public class SettingsPage extends Fragment {
                     e.printStackTrace();
                 }
             } else {
-                int imageId = getResources().getIdentifier("battlefield", "mipmap", appState.getPackageName()); //this will eventually read db pic
+                int imageId = getResources().getIdentifier("blank", "mipmap", appState.getPackageName()); //this will eventually read db pic
                 gamePic2.setImageResource(imageId);  //have to save the image. worked with image  id instead of mipmap location
             }
             if (imageNumb == 3) {
@@ -156,7 +235,7 @@ public class SettingsPage extends Fragment {
                     e.printStackTrace();
                 }
             } else {
-                int imageId = getResources().getIdentifier("battlefield", "mipmap", appState.getPackageName()); //this will eventually read db pic
+                int imageId = getResources().getIdentifier("blank", "mipmap", appState.getPackageName()); //this will eventually read db pic
                 gamePic3.setImageResource(imageId);  //have to save the image. worked with image  id instead of mipmap location
             }
             if (imageNumb == 4) {
@@ -174,7 +253,7 @@ public class SettingsPage extends Fragment {
                     e.printStackTrace();
                 }
             } else {
-                int imageId = getResources().getIdentifier("battlefield", "mipmap", appState.getPackageName()); //this will eventually read db pic
+                int imageId = getResources().getIdentifier("blank", "mipmap", appState.getPackageName()); //this will eventually read db pic
                 gamePic4.setImageResource(imageId);  //have to save the image. worked with image  id instead of mipmap location
             }
 
@@ -296,8 +375,8 @@ public class SettingsPage extends Fragment {
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 Bundle test = new Bundle();
-                test.putString("region", region);
-                test.putString("genre", genre);
+                test.putString("region", userRegion);
+                test.putString("genre", gameGenre);
                HomePage homePage = new HomePage();
                homePage.setArguments(test);
 

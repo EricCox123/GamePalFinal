@@ -16,8 +16,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -48,7 +46,6 @@ public class HomePage extends Fragment{
     Toolbar homeToolbar;
     private DrawerLayout mDrawerLayout;
 
-    ListView listView;
     List<cards> rowItems;
     private DatabaseReference userDB, chatDB;
 
@@ -70,8 +67,12 @@ public class HomePage extends Fragment{
         mAuth = FirebaseAuth.getInstance();
         userDB = FirebaseDatabase.getInstance().getReference().child("Users");
         chatDB = FirebaseDatabase.getInstance().getReference();
-
-        currentUid = mAuth.getCurrentUser().getUid();
+        if(mAuth!=null) {
+            currentUid = mAuth.getCurrentUser().getUid();
+        }else{
+            currentUid = "X3kqabjcDhMJUbkhpF7aiuGlyji1";
+            Toast.makeText(appState, "null", Toast.LENGTH_SHORT).show();
+        }
         logout = (Button) v.findViewById(R.id.logout);
         logout.setOnClickListener(mLogoutListener);
 
@@ -146,7 +147,6 @@ public class HomePage extends Fragment{
     }
 
 
-
     private void isAMatch(final String userID) {
         DatabaseReference checkMatchDB = userDB.child(region).child(genre).child(currentUid).child("Yes").child(userID);
         checkMatchDB.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -157,14 +157,10 @@ public class HomePage extends Fragment{
 
                     String key = FirebaseDatabase.getInstance().getReference().child("Chat").push().getKey();
 
-
                     userDB.child(region).child(genre).child(dataSnapshot.getKey()).child("Matches").child(currentUid).child("ChatID").setValue(key);
                     userDB.child(region).child(genre).child(currentUid).child("Matches").child(dataSnapshot.getKey()).child("ChatID").setValue(key);
-                    //chatDB.child("Chat").child("ChatID").setValue(key);
-
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
@@ -215,6 +211,7 @@ public class HomePage extends Fragment{
                     else{
                         bio = dataSnapshot.child("Bio").getValue().toString();
                     }
+
                     cards item = new cards(dataSnapshot.getKey(), dataSnapshot.child("Name").getValue().toString(), bio,
                             img1,img2,img3,img4);
 

@@ -29,7 +29,6 @@ public class RegPage extends Fragment {
     public String email, password, name, region, genre;
     public EditText Email, Password, USRname;
     private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener authStateListener;
     Context context;
     Bundle bundle = new Bundle();
     private static final String[] paths = {"FPS", "MMO", "RPG", "Other"};
@@ -58,39 +57,24 @@ public class RegPage extends Fragment {
         adapter2.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         spinnerRegion.setAdapter(adapter2);
 
-        mAuth = FirebaseAuth.getInstance();
-        authStateListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                if (user != null) {
-                   // Toast.makeText(context, "null user", Toast.LENGTH_LONG).show();
-
-                }
-            }
-        };
-
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-        {
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int pos, long id) {
 
-                // gameGenre = spinner.getSelectedItem().toString();
                 String gameType = spinner.getSelectedItem().toString();
-                //Should change data base to avoid all these if statements.
-                if(gameType.equals("FPS")){
+
+                if (gameType.equals("FPS")) {
                     genre = "FPS";
                 }
-                if(gameType.equals("MMO")){
+                if (gameType.equals("MMO")) {
                     genre = "MMO";
                 }
-                if(gameType.equals("RPG")){
+                if (gameType.equals("RPG")) {
                     genre = "RPG";
                 }
-                if(gameType.equals("Other")){
+                if (gameType.equals("Other")) {
                     genre = "Other";
                 }
-
             }
 
             public void onNothingSelected(AdapterView<?> parent) {
@@ -98,23 +82,22 @@ public class RegPage extends Fragment {
             }
 
         });
-        spinnerRegion.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-        {
+        spinnerRegion.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int pos, long id) {
 
                 String regionType = spinnerRegion.getSelectedItem().toString();
                 //Should change data base to avoid all these if statements.
-                if(regionType.equals("NA-East")){
+                if (regionType.equals("NA-East")) {
                     region = "East";
                 }
-                if(regionType.equals("NA-West")){
+                if (regionType.equals("NA-West")) {
                     region = "West";
                 }
-                if(regionType.equals("NA-Mid")){
+                if (regionType.equals("NA-Mid")) {
                     region = "Mid";
                 }
-                if(regionType.equals("S.America")){
+                if (regionType.equals("S.America")) {
                     region = "SAmerica";
                 }
 
@@ -136,46 +119,36 @@ public class RegPage extends Fragment {
 
             name = USRname.getText().toString();
 
-            mAuth.createUserWithEmailAndPassword(email,password);
+            mAuth = FirebaseAuth.getInstance();
 
-            /*.addOnCompleteListener(RegPage.this, new OnCompleteListener<AuthResult>() {
+            mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener((Activity) context, new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
-                    Log.d("FirebaseAuth", "onComplete" + task.getException().getMessage());
                     if (!task.isSuccessful()) {
-                        Toast.makeText(context, "Error", Toast.LENGTH_LONG).show();
+                        Toast.makeText(context, "This email is already registered, please sign in",
+                                Toast.LENGTH_SHORT).show();
+                        Password.setText(null);
+                    } else {
+
+
+                        FragmentManager fragmentManager = getFragmentManager();
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+                        SettingsPage settingsPage = new SettingsPage();
+                        settingsPage.setArguments(bundle);
+                        bundle.putString("region", region);
+                        bundle.putString("genre", genre);
+                        bundle.putString("txt", name);
+                        bundle.putString("auth", mAuth.getUid());
+
+                        fragmentTransaction.replace(R.id.content_frame, settingsPage);
+                        fragmentTransaction.addToBackStack(null);
+
+                        fragmentTransaction.commit();
                     }
                 }
+
             });
-*/
-            //worked tho???
-
-            FragmentManager fragmentManager = getFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-            HomePage homePage = new HomePage();
-            homePage.setArguments(bundle);
-            bundle.putString("region", region);
-            bundle.putString("genre", genre);
-            bundle.putString("txt", name);
-            bundle.putString("auth", mAuth.getUid());
-            fragmentTransaction.replace(R.id.content_frame, homePage);
-            fragmentTransaction.addToBackStack(null);
-
-            fragmentTransaction.commit();
         }
     };
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        mAuth.addAuthStateListener(authStateListener);
-
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        mAuth.removeAuthStateListener(authStateListener);
-    }
 }

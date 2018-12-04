@@ -1,11 +1,7 @@
 package com.example.eric.gamepalfinal;
 
-import android.app.Activity;
 import android.content.Context;
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -14,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 public class ImageAdapter2 extends BaseAdapter {
     private Context mContext;
@@ -40,7 +35,6 @@ public class ImageAdapter2 extends BaseAdapter {
         return 0;
     }
 
-    // create a new ImageView for each item referenced by the Adapter
     public View getView(final int position, final View convertView, ViewGroup parent) {
         final ImageView imageView;
         if (convertView == null) {
